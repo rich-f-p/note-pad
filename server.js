@@ -15,6 +15,17 @@ app.use(express.static('public'));
 app.get('/notes', (req, res) => 
     res.sendFile(path.join(__dirname, './public/notes.html'))
 );
+// promise readfile
+const readFromFile = util.promisify(fs.readFile);
+
+//app.get that will read the object located in the db.json
+//the data from db.json is then sent back as a response to the user 
+app.get('/api/notes', (req,res) => {
+  //readFromFile targets the location './db/db.json'
+  readFromFile('./db/db.json').then((data) =>
+  res.json(JSON.parse(data)));
+});
+
 
 app.listen(PORT, () =>
     console.log(`http://localhost:${PORT}`)
