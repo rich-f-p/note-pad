@@ -62,7 +62,17 @@ fs.readFile('./db/db.json', 'utf8', (err, data) => {
     wf('./db/db.json', parsedData);
   }
 });
-  }});
+  // a response stating that the note has been saved
+  const noteSaved = {
+    status: 'saved',
+    body: note,
+  };
+  
+  res.json(noteSaved);
+  }else {
+    res.json('Error in posting note');
+}
+});
 app.listen(PORT, () =>
     console.log(`http://localhost:${PORT}`)
 );
