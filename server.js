@@ -40,6 +40,17 @@ const wf = (location, data) => {
   })
 }
 
+app.post('/api/notes', (req,res) =>{
+  const { title, text} = req.body;
+  if (title && text) {
+  //new object that will be saved to the db.json
+  const note = {
+  'title': title,
+  'text': text,
+  //generates a unique id
+  'id': uuidv4()
+  }
+  }})
 app.listen(PORT, () =>
     console.log(`http://localhost:${PORT}`)
 );
