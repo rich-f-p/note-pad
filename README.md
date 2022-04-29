@@ -11,6 +11,8 @@ The following is an application that allows the user to write and save notes. On
 - [Live Deployment](#live-deployment)
 - [Questions](#questions)
 - [License](#license)
+- [Test](#test)
+- [Credits](#credits)
 
 ## Instructions
 - Clone the repository in the terminal 
@@ -45,3 +47,9 @@ If there are questions, reach out to: Richard Ferry
 
 ## License
 * [License: MIT](https://opensource.org/licenses/MIT) : click to learn more
+
+## Test
+* All test done using Insomnia (for request api's) [Insomnia](https://insomnia.rest/)
+
+### Credits
+* Starter files provided by UC Berkley Coding BootCamp
