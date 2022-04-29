@@ -35,7 +35,7 @@ const wf = (location, data) => {
       if(err){
           console.error(err)
       }else {
-          console.ingo(`file written ${location}`)
+          console.log(`file written ${location}`)
       }
   })
 }
@@ -73,6 +73,10 @@ fs.readFile('./db/db.json', 'utf8', (err, data) => {
     res.json('Error in posting note');
 }
 });
+// route to index.html
+app.get('*', (req,res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'))
+})
 app.listen(PORT, () =>
     console.log(`http://localhost:${PORT}`)
 );
