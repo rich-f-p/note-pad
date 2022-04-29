@@ -50,7 +50,19 @@ app.post('/api/notes', (req,res) =>{
   //generates a unique id
   'id': uuidv4()
   }
-  }})
+  //reads the content already present in the db.json object.
+fs.readFile('./db/db.json', 'utf8', (err, data) => {
+  if (err) {
+    console.error(err);
+  } else {
+    //joins the new note with the previous data in the db.json
+    const parsedData = JSON.parse(data);
+    parsedData.push(note);
+    //writes the data to the db.json file
+    wf('./db/db.json', parsedData);
+  }
+});
+  }});
 app.listen(PORT, () =>
     console.log(`http://localhost:${PORT}`)
 );
