@@ -80,7 +80,7 @@ app.delete('/api/notes/:id', (req, res) => {
   readFromFile('./db/db.json').then((data) => JSON.parse(data))
   .then((data) => {
     var newDB = [];
-    //iterate through the notes o
+    //iterate through the notes object
       for(i=0;i<data.length;i++){
         if(data[i].id !== id ){
           newDB.push(data[i]);
