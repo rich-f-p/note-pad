@@ -35,7 +35,7 @@ const wf = (location, data) => {
       if(err){
           console.error(err)
       }else {
-          console.log(`file written ${location}`)
+          console.log(`file saved`)
       }
   })
 }
@@ -73,10 +73,30 @@ fs.readFile('./db/db.json', 'utf8', (err, data) => {
     res.json('Error in posting note');
 }
 });
+
+// route to delete notes by obtaining the id number.
+app.delete('/api/notes/:id', (req, res) => {
+  const  id  = req.params.id;
+  readFromFile('./db/db.json').then((data) => JSON.parse(data))
+  .then((data) => {
+    var newDB = [];
+    //iterate through the notes o
+      for(i=0;i<data.length;i++){
+        if(data[i].id !== id ){
+          newDB.push(data[i]);
+        }
+      }
+    const parse = newDB
+    // write object to db.json, which no longer includes the removed note. 
+    wf('./db/db.json', parse);
+    res.json(`Deleted id: ${id}`);
+}); 
+});
 // route to index.html
 app.get('*', (req,res) => {
   res.sendFile(path.join(__dirname, './public/index.html'))
 })
+
 app.listen(PORT, () =>
     console.log(`http://localhost:${PORT}`)
 );
