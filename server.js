@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 // get route to notes page
 app.get('/notes', (req, res) => 
-    res.sendFile(path.join(__dirname, './public/notes.html'))
+  res.sendFile(path.join(__dirname, './public/notes.html'))
 );
 // promise readfile
 const readFromFile = util.promisify(fs.readFile);
@@ -25,7 +25,20 @@ app.get('/api/notes', (req,res) => {
   readFromFile('./db/db.json').then((data) =>
   res.json(JSON.parse(data)));
 });
-
+/**
+ * function wf, uses fs to writefile when a location and data are given
+ * @param {string} location 
+ * @param {object} data 
+ */
+const wf = (location, data) => {
+  fs.writeFile(location, JSON.stringify(data, null, 4), (err) =>{
+      if(err){
+          console.error(err)
+      }else {
+          console.ingo(`file written ${location}`)
+      }
+  })
+}
 
 app.listen(PORT, () =>
     console.log(`http://localhost:${PORT}`)
